@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: weather-demo
+spec:
+  rules:
+  - host: weather-demo.preprod-local.ch
+    http:
+      paths:
+      - backend:
+          serviceName: weather-app
+          servicePort: 80
+        path: /

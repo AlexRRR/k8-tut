@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: weather-app
+  name: weather-app
+  namespace: k8-demo
+spec:
+  clusterIP: 10.3.0.47
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: weather-app
+  type: ClusterIP

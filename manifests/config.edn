@@ -1,0 +1,7 @@
+{
+  :url "http://api.openweathermap.org/data/2.5/weather"
+  :api-token "66854c477fe4ebf5b752acc5edc625b0"
+  :cities {
+    :zurich "6295502"
+  }
+}
