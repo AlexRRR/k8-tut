@@ -4,15 +4,18 @@ metadata:
   name: weather-app
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+            app: weather-app
   template:
     metadata:
       labels:
         app: weather-app
-        version: 0.1.0-SNAPSHOT
+        version: 0.2.0-SNAPSHOT
     spec:
       containers:
       - name: weather-app
-        image: registry.env.intra.local.ch/alex/k8s-demo:0.1.0-SNAPSHOT
+        image: registry.env.intra.local.ch/alex/k8s-demo:0.2.0-SNAPSHOT
         ports:
         - containerPort: 8080
         volumeMounts:
