@@ -2,13 +2,14 @@
 #Creating a namespace
 
 ```sh
-➜  k8-demo kubectl create namespace k8-demo                      
+kubectl create namespace k8-demo                      
 namespace "k8-demo" created
 
-➜  k8-demo kubectl config set-context k8-demo --namespace=k8-demo --cluster=default-cluster --user=default-admin
+kubectl config set-context k8-demo --namespace=k8-demo --cluster=default-cluster --user=default-admin
 
 context "k8-demo" set.
-➜  k8-demo kubectl config use-context k8-demo
+
+kubectl config use-context k8-demo
 switched to context "k8-demo".
 ```
 
