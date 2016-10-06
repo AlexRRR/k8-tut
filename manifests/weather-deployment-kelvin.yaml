@@ -4,14 +4,11 @@ metadata:
   name: weather-app
 spec:
   replicas: 3
-  selector:
-    matchLabels:
-      app: weather-app
   template:
     metadata:
       labels:
         app: weather-app
-        version: 0.1.0-SNAPSHOT
+        track: stable
     spec:
       containers:
       - name: weather-app
@@ -22,9 +19,31 @@ spec:
         - name: config-volume
           readOnly: true
           mountPath: /opt/
+        - name: shared-state
+          mountPath: /state
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+      - name: sleepy
+        image: registry.env.intra.local.ch/alex/k8-demo-sleepy:0.1
+        volumeMounts:
+        - name: shared-state
+          mountPath: /state
+        readinessProbe:
+          exec:
+            command:
+              - grep
+              - "OK"
+              - /state/state.run
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
       imagePullSecrets:
       - name: demo-key
       volumes:
       - name: config-volume
         secret:
           secretName: weather-config-prod
+      - name: shared-state
+        emptyDir: {}

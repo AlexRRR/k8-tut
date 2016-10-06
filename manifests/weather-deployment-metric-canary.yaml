@@ -1,18 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: weather-app
+  name: weather-app-canary
 spec:
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
         app: weather-app
-        track: stable
+        track: canary
     spec:
       containers:
       - name: weather-app
-        image: registry.env.intra.local.ch/alex/k8s-demo:0.2.0-SNAPSHOT
+        image: registry.env.intra.local.ch/alex/k8s-demo:0.3.0-SNAPSHOT
         ports:
         - containerPort: 8080
         volumeMounts:
