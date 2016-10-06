@@ -89,7 +89,7 @@ kubectl rollout undo deployment weather-app --to-revision=5
 
 Canary release
 ```
-kubectl apply -f weather-deployment-metric-canary.yaml --record
+kubectl create -f weather-deployment-metric-canary.yaml --record
 ```
 
 ## Autoscaling (Horizontal Pods Autoscaling)
